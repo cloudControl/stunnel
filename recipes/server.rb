@@ -5,6 +5,10 @@ execute "Create stunnel SSL Certificates" do
   creates '/etc/stunnel/stunnel.pem'
 end
 
+execute "Change certificate permissions" do
+  command "chmod 0400 /etc/stunnel/stunnel.pem"
+end
+
 node.default[:stunnel][:certificate_path] = '/etc/stunnel/stunnel.pem'
 node.default[:stunnel][:client_mode] = false
 
